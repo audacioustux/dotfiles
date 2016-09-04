@@ -3,7 +3,7 @@
 
 > My VIM dot file
 
-![terminix - molokai dark](https://raw.githubusercontent.com/audacioustux/.vimrc/master/Screenshot_20160904_152902.png)
+![Terminix - molokai dark](https://raw.githubusercontent.com/audacioustux/.vimrc/master/Screenshot_20160904_152902.png "Terminix - molokai dark")
 
 # Installation
     $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
