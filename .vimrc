@@ -73,6 +73,7 @@ let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMouseMode=2
+let g:NERDTreeWinSize=20
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$','\.out$', '\.bzr$']
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -97,6 +98,9 @@ call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#141e23')
 call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#141e23')
 call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#141e23')
 call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#141e23')
+" Nerdtree toogle
+nmap <f2> :NERDTree<CR>
+imap <f2> <Esc>:NERDTree<CR>
 
 "DEVicon------------
 set encoding=utf8
@@ -149,7 +153,11 @@ let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
 highlight SyntasticError guibg=#FF7033
 highlight SyntasticStyleWarning guibg=#3CDEBB
-
+function! SyntasticCheckHook(errors)
+        if !empty(a:errors)
+            let g:syntastic_loc_list_height = min([len(a:errors), 10])
+        endif
+endfunction
 " Highlight advance---------
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
