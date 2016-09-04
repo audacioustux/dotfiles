@@ -13,3 +13,10 @@
     $ wget https://raw.githubusercontent.com/audacioustux/.vimrc/master/.vimrc
 
     $ vim +PluginInstall +qall
+
+# Custom keybindings
+
+ - Paste Toggle = `<f12>`
+ - UndoTree = `<f5>`
+ - C/C++ Build and Run = `<f9>`
+ - Save = `ctrl + s`
