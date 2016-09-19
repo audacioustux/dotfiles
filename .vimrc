@@ -128,12 +128,8 @@ if !exists('g:undotree_SplitWidth')
 endif
 
 " build and run
-nmap <f9> :w<CR> :!clear<CR> :! g++ -o "%:p:h/.%:t.out" "%" -std=c++11 && "%:p:h/.%:t.out"<CR>
-imap <f9> <Esc>:w<CR> :!clear<CR> :! g++ -o "%:p:h/.%:t.out" "%" -std=c++11 && "%:p:h/.%:t.out"<CR>
-
-" Use CTRL-S for saving, also in Insert mode
-nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>a
+nmap <f9> :update<CR> :!clear<CR> :! g++ -o "%:p:h/.%:t.out" "%" -std=c++11 && "%:p:h/.%:t.out"<CR>
+imap <f9> <Esc>:update<CR> :!clear<CR> :! g++ -o "%:p:h/.%:t.out" "%" -std=c++11 && "%:p:h/.%:t.out"<CR>
 
 " syntastic----------
 set statusline+=%#warningmsg#
