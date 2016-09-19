@@ -20,7 +20,6 @@ Preferred terminal emulators: Terminix, Gnome-Terminal. Install themes from [Her
  - Paste Toggle = `<f12>`
  - UndoTree = `<f5>`
  - C/C++ Build and Run = `<f9>`
- - Save = `ctrl + s`
  - NERDTree toggle = `<f2>`
 
 # Plugins
