@@ -1,40 +1,46 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" don't be compatible :)
+set nocompatible
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'mbbill/undotree'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'scrooloose/syntastic'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-"Appearence & tweak
+call plug#begin()
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'vim-syntastic/syntastic'
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp', 'objc'] }
+Plug 'vim-jp/cpp-vim', { 'for': ['c', 'cpp', 'objc'] }
+Plug 'ervandew/supertab'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
+Plug 'mbbill/undotree'
+Plug 'tomasr/molokai'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Autocompleter and snippets {{{
+function! BuildYCM(info)
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer
+  endif
+endfunction
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'on': [] }
+Plug 'SirVer/ultisnips', { 'on': [] }
+Plug 'honza/vim-snippets'
+" Defer YouCompleteMe and UltiSnips loading until insert mode is entered {{{
+augroup load_us_ycm
+  autocmd!
+  autocmd InsertEnter * if !exists(':UltiSnipsEdit')
+        \|      call plug#load('ultisnips', 'YouCompleteMe')
+        \|  else
+        \|      call plug#load('YouCompleteMe')
+        \|  endif
+        \|  autocmd! load_us_ycm
+augroup END
+" }}}
+call plug#end()
+filetype plugin indent on
+syntax enable
+set t_Co=256
+colorscheme molokai
+let g:molokai_original = 1
+set encoding=utf8
 syntax enable
 set background=dark
 set number
@@ -42,7 +48,6 @@ set autoindent
 set tabstop=4 shiftwidth=4 expandtab softtabstop=4
 set lazyredraw
 set ttyfast
-filetype plugin indent on
 set mouse=a
 set hidden
 set virtualedit=onemore
@@ -64,55 +69,18 @@ set scrolloff=3                 " Minimum lines to keep above and below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 set pastetoggle=<F12>
-
-" NERDTree --------------
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#073642 ctermbg=4
-
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeQuitOnOpen = 1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMouseMode=2
-let g:NERDTreeWinSize=20
-let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$','\.out$', '\.bzr$']
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-  exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-  exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#141e23')
-call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#141e23')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#141e23')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#141e23')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#141e23')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#141e23')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#141e23')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#141e23')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#141e23')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#141e23')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#141e23')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#141e23')
-call NERDTreeHighlightFile('ts', 'Blue', 'none', '#6699cc', '#141e23')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#141e23')
-call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#141e23')
-call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#141e23')
-call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#141e23')
-call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#141e23')
-call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#141e23')
-" Nerdtree toogle
-nmap <f2> :NERDTree<CR>
-imap <f2> <Esc>:NERDTree<CR>
-
-"DEVicon------------
-set encoding=utf8
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 11
+autocmd FileType nerdtree setlocal nolist
+let g:webdevicons_enable = 1
 " Airline----------
 set laststatus=2
 let g:airline_theme='wombat'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_powerline_fonts = 1
-
+let g:airline_powerline_fonts                   = 1
+let g:airline_detect_modified                   = 1
+let g:airline_detect_paste                      = 1
+let g:airline#extensions#syntastic#enabled      = 1
+let g:airline#extensions#ycm#enabled            = 1
+let g:airline#extensions#ycm#error_symbol       = 'E:'
+let g:airline#extensions#ycm#warning_symbol     = 'W:'
 " UndoTree------------
 nnoremap <F5> :UndotreeToggle<CR>
 if !exists('g:undotree_WindowLayout')
@@ -126,11 +94,6 @@ if !exists('g:undotree_SplitWidth')
     let g:undotree_SplitWidth = 20
   endif
 endif
-
-" build and run
-nmap <f9> :update<CR> :!clear<CR> :! g++ -o "%:p:h/.%:t.out" "%" -std=c++11 && "%:p:h/.%:t.out"<CR>
-imap <f9> <Esc>:update<CR> :!clear<CR> :! g++ -o "%:p:h/.%:t.out" "%" -std=c++11 && "%:p:h/.%:t.out"<CR>
-
 " syntastic----------
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -142,7 +105,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_checkers = ['gcc']
 let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -Wall -std=c++11'
+let g:syntastic_cpp_compiler_options = ' -Wall -std=c++0x'
 let g:syntastic_cpp_check_header = 1
 
 let g:syntastic_error_symbol = "✗"
@@ -154,6 +117,48 @@ function! SyntasticCheckHook(errors)
             let g:syntastic_loc_list_height = min([len(a:errors), 10])
         endif
 endfunction
+" YouCompleteMe configuration {{{
+if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.cpp = ['->', '.', '::', 're!gl']
+let g:ycm_use_ultisnips_completer = 1
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_always_populate_location_list = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_extra_conf.py'
+let g:ycm_extra_conf_vim_data   = [ '&filetype' ]
+let g:ycm_extra_conf_globlist = [
+\ '~/*' ]
+" YouCompleteMe and UltiSnips compatibility, with the helper of supertab
+let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
+
+let g:SuperTabDefaultCompletionType    = '<C-n>'
+let g:SuperTabCrMapping                = 0
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"{{{
+" NERDTree --------------
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMouseMode=2
+let g:NERDTreeWinSize=20
+let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$','\.out$', '\.bzr$', '\.o$', '\.dat$', '\.jpg$', '\.jpeg$']
+" Nerdtree toogle
+nmap <f2> :NERDTree<CR>
+imap <f2> <Esc>:NERDTree<CR>
+" build and run
+nmap <f9> :update<CR> :!clear<CR> :! g++ -o "%:p:h/.%:t.out" "%" -std=c++11 && "%:p:h/.%:t.out"<CR>
+imap <f9> <Esc>:update<CR> :!clear<CR> :! g++ -o "%:p:h/.%:t.out" "%" -std=c++11 && "%:p:h/.%:t.out"<CR>
 " Highlight advance---------
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
