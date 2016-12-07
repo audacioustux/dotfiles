@@ -37,7 +37,7 @@ Preferred terminal emulators: Terminix, Gnome-Terminal. Install themes from [Her
 
 > My NEOVIM dot file
 
-![Terminator - molokai dark](https://raw.githubusercontent.com/audacioustux/dotfiles/master/Screenshot_%E0%A7%A8%E0%A7%A6%E0%A7%A7%E0%A7%AC%E0%A7%A7%E0%A7%A8%E0%A7%A6%E0%A7%AC_%E0%A7%A7%E0%A7%AF%E0%A7%AB%E0%A7%A8%E0%A7%A7%E0%A7%AD.png "Terminator - molokai dark")
+![Terminator - molokai dark](https://raw.githubusercontent.com/audacioustux/dotfiles/master/Screenshot_%E0%A7%A8%E0%A7%A6%E0%A7%A7%E0%A7%AC%E0%A7%A7%E0%A7%A8%E0%A7%A6%E0%A7%AD_%E0%A7%A7%E0%A7%AC%E0%A7%A7%E0%A7%AA%E0%A7%A7%E0%A7%AE.png "Terminator - molokai dark")
 
 # Installation
     $ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
