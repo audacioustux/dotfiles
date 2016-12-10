@@ -113,7 +113,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_checkers = ['gcc']
 let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -Wall -std=c++0x'
+let g:syntastic_cpp_compiler_options = ' -Wall -std=c++11'
 let g:syntastic_cpp_check_header = 1
 
 let g:syntastic_error_symbol = "✗"
@@ -165,8 +165,8 @@ autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "If the NERDTree buffer is the last buffer remaining, close it.
 " Nerdtree toogle
-nmap <f2> :NERDTree<CR>
-imap <f2> <Esc>:NERDTree<CR>
+nmap <f2> :NERDTreeToggle<CR>
+imap <f2> <Esc>:NERDTreeToggle<CR>
 " build and run
 nmap <f9> :update<CR> :!clear<CR> :! g++ -o "%:p:h/.%:t.out" "%" -std=c++11 && "%:p:h/.%:t.out"<CR>
 imap <f9> <Esc>:update<CR> :!clear<CR> :! g++ -o "%:p:h/.%:t.out" "%" -std=c++11 && "%:p:h/.%:t.out"<CR>
