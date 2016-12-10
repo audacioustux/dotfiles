@@ -43,7 +43,8 @@ Preferred terminal emulators: Terminix, Gnome-Terminal. Install themes from [Her
     $ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     $ cd ~/.config/nvim
-    $ wget https://raw.githubusercontent.com/audacioustux/dotfiles/master/init.vim
+    $ wget https://raw.githubusercontent.com/audacioustux/dotfiles/master/init.vim \
+    https://raw.githubusercontent.com/audacioustux/dotfiles/master/ycm_extra_conf.py
     $ nvim +PlugInstall +qall
     $ cd /usr/share/fonts
     $ sudo curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20for%20Powerline%20Nerd%20Font%20Complete.otf
