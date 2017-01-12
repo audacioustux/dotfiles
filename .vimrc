@@ -99,8 +99,8 @@ call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#141e23')
 call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#141e23')
 call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#141e23')
 " Nerdtree toogle
-nmap <f2> :NERDTree<CR>
-imap <f2> <Esc>:NERDTree<CR>
+nmap <f2> :cd %:p:h<CR>:NERDTree<CR>
+imap <f2> <Esc> :cd %:p:h<CR>:NERDTree<CR>
 
 "DEVicon------------
 set encoding=utf8
@@ -158,3 +158,11 @@ endfunction
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
 let c_no_curly_error=1
+
+"  Brace complete---------
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
+inoremap        (  ()<Left>
+inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
