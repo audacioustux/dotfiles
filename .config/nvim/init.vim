@@ -28,6 +28,9 @@ Plug 'preservim/nerdcommenter'
 " fzf - fuzzy search
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+" note taking - Zettelkasten
+Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vim-zettel'
 " icons
 Plug 'ryanoasis/vim-devicons'
 " git
@@ -95,7 +98,7 @@ augroup END
 nnoremap <silent> <F7> :set relativenumber!<cr>
 
 " enable highlighting of the current cursor position (slows down rendering!)
-" set cursorline
+set cursorline
 " set cursorcolumn
 
 " set syntax theme
@@ -109,8 +112,7 @@ set textwidth=80
 set colorcolumn=+1
 
 " reduce travel time to reach <Esc> key
-map! kj <Esc>
-map! jk <Esc>
+inoremap ii <Esc>
 
 " set mouse mode
 set mouse=a
@@ -230,7 +232,7 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2
+" set cmdheight=2
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -545,4 +547,10 @@ let g:gutentags_plus_switch = 1
 " dart & flutter
 """""""""""""""""""""""""""""
 let g:lsc_auto_map = v:true
+
+""""""""""""""""""""""""""""""
+" vimwiki
+""""""""""""""""""""""""""""""
+let g:vimwiki_list = [{'path': '~/brainwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 

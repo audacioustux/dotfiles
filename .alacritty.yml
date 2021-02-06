@@ -1,21 +1,12 @@
 window:
   dynamic_padding: true
   decorations: none
-  startup_mode: Fullscreen
+  startup_mode: Maximized
 font:
   normal:
-    family: Source Code Pro
-    style: SemiBold
-  bold:
-    family: Source Code Pro
-    style: Bold
-  italic:
-    family: Source Code Pro
-    style: Italic
-  bold_italic:
-    family: Source Code Pro
-    style: Bold Italic
-  size: 9.0
+    family: "JetBrains Mono"
+    style: Regular
+  size: 10.0
 draw_bold_text_with_bright_colors: true
 
 # Colors (Monokai Dark)
@@ -47,12 +38,5 @@ colors:
    cyan:    '#A1EFE4'
    white:   '#F9F8F5'
 background_opacity: 0.95
-live_config_reload: true
 hide_when_typing: true
 
-# shell:
-#   program: zsh
-#   args:
-#     - -l
-#     - -c
-#     - "tmux new-session -A -s audacioustux"
