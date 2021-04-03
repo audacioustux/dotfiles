@@ -1,6 +1,7 @@
 {
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
+    "typescript",
     "json",
     "elixir",
     "vue",
@@ -23,5 +24,8 @@
       "trace.server": "verbose",
       "initializationOptions": {}
     }
-  }
+  },
+  "css.lint.unknownAtRules": "ignore",
+  "scss.validate": false,
+  "vetur.validation.style": false
 }

@@ -3,3 +3,4 @@ elixir 1.11.0-otp-23
 erlang 23.1.1
 java openjdk-15
 scala 2.13.4
+golang 1.15.8

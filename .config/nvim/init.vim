@@ -29,8 +29,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " note taking - Zettelkasten
-Plug 'vimwiki/vimwiki'
-Plug 'michal-h21/vim-zettel'
+" Plug 'vimwiki/vimwiki'
+" Plug 'michal-h21/vim-zettel'
 " icons
 Plug 'ryanoasis/vim-devicons'
 " git
@@ -40,7 +40,7 @@ Plug 'airblade/vim-gitgutter'
 " tags
 Plug 'majutsushi/tagbar'
 " Surround.vim is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more
-Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 " repeat command with . (dot)
 Plug 'tpope/vim-repeat'
 " multiple cursor
@@ -78,7 +78,7 @@ Plug 'luochen1990/rainbow'
 Plug 'easymotion/vim-easymotion'
 " color highlighter
 Plug 'ap/vim-css-color'
-" dart & flutter
+" dart
 Plug 'dart-lang/dart-vim-plugin'
 
 " Initialize plugin system
@@ -98,7 +98,7 @@ augroup END
 nnoremap <silent> <F7> :set relativenumber!<cr>
 
 " enable highlighting of the current cursor position (slows down rendering!)
-set cursorline
+" set cursorline
 " set cursorcolumn
 
 " set syntax theme
@@ -551,6 +551,6 @@ let g:lsc_auto_map = v:true
 """"""""""""""""""""""""""""""
 " vimwiki
 """"""""""""""""""""""""""""""
-let g:vimwiki_list = [{'path': '~/brainwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" let g:vimwiki_list = [{'path': '~/brainwiki/',
+"                       \ 'syntax': 'markdown', 'ext': '.md'}]
 

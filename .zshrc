@@ -104,6 +104,7 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-# JAVA_HOME
-. ~/.asdf/plugins/java/set-java-home.zsh
+source $HOME/.aliases.zsh
+source $HOME/.profile
+
 
