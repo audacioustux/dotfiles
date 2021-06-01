@@ -1,31 +1,29 @@
 {
-  "coc.preferences.formatOnType": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "typescript",
-    "json",
-    "elixir",
-    "vue",
-    "html",
-    "dart"
-  ],
-  "codeLens.enable": true,
-  "diagnostic-languageserver.filetypes": {
-    "elixir": ["mix_credo", "mix_credo_compile"],
-    "eelixir": ["mix_credo", "mix_credo_compile"]
-  },
-  "eslint.autoFixOnSave": true,
-  "languageserver": {
-    "clojure-lsp": {
-      "command": "bash",
-      "args": ["-c", "clojure-lsp"],
-      "filetypes": ["clojure"],
-      "rootPatterns": ["project.clj"],
-      "additionalSchemes": ["jar", "zipfile"],
-      "trace.server": "verbose",
-      "initializationOptions": {}
+    "coc.preferences.formatOnSaveFiletypes": [
+        "java",
+        "xml",
+        "rust",
+        "javascript",
+        "json",
+        "scala"
+    ],
+    "coc.preferences.formatOnTypeFiletypes": [
+        "java",
+        "scala"
+    ],
+    "languageserver": {
+        "ocaml-lsp": {
+            "command": "opam",
+            "args": [
+                "config",
+                "exec",
+                "--",
+                "ocamllsp"
+            ],
+            "filetypes": [
+                "ocaml",
+                "reason"
+            ]
+        }
     }
-  },
-  "css.lint.unknownAtRules": "ignore",
-  "scss.validate": false,
-  "vetur.validation.style": false
 }

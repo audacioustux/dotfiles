@@ -10,82 +10,27 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin(stdpath('config').'/plugged')
 
-" Make sure you use single quotes
-" elixir
-Plug 'elixir-editors/vim-elixir'
-Plug 'elixir-lsp/elixir-ls', { 'do': { -> g:ElixirLS.compile() } }
 " language server protocol (lsp)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" statusline
+" status/tab-line
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" theme
-Plug 'morhetz/gruvbox'
-" vertical lines at each indentation level
+" gruvbox theme
+Plug 'sainnhe/gruvbox-material'
+" vertical line at each indent level
 Plug 'Yggdroot/indentLine'
-" comment manipulation
-Plug 'preservim/nerdcommenter'
-" fzf - fuzzy search
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-" note taking - Zettelkasten
-" Plug 'vimwiki/vimwiki'
-" Plug 'michal-h21/vim-zettel'
-" icons
-Plug 'ryanoasis/vim-devicons'
-" git
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
-Plug 'airblade/vim-gitgutter'
-" tags
-Plug 'majutsushi/tagbar'
-" Surround.vim is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more
-Plug 'machakann/vim-sandwich'
-" repeat command with . (dot)
-Plug 'tpope/vim-repeat'
-" multiple cursor
-Plug 'terryma/vim-multiple-cursors'
-" rust
-Plug 'rust-lang/rust.vim'
-" emmet
-Plug 'mattn/emmet-vim'
-" undo tree
-Plug 'simnalamburt/vim-mundo'
-" move line/selection left/right up/down
-Plug 'matze/vim-move'
-" just to solve disappearing quotes in json because of indentLines plug [patch-1]
-Plug 'elzr/vim-json'
-" fancy start screen
-Plug 'mhinz/vim-startify'
-" carbon - take/make screenshot
-Plug 'kristijanhusak/vim-carbon-now-sh'
-" snippets
-Plug 'honza/vim-snippets'
-" better c++11/14/17 highlight
-Plug 'octol/vim-cpp-enhanced-highlight'
-" autosave
-" Plug '907th/vim-auto-save'
-" generate tags automatically
-" Plug 'craigemery/vim-autotag'
-" Plug 'ludovicchabant/vim-gutentags'
-" Plug 'skywind3000/gutentags_plus'
-" for clojure (lisp)
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'tpope/vim-fireplace'
-" rainbow parentheses
-Plug 'luochen1990/rainbow'
-" vim motion on speed
-Plug 'easymotion/vim-easymotion'
-" color highlighter
-Plug 'ap/vim-css-color'
-" dart
-Plug 'dart-lang/dart-vim-plugin'
+" transparent background
+Plug 'tribela/vim-transparent'
 
 " Initialize plugin system
 call plug#end()
 
+let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml', 'coc-rust-analyzer', 'coc-tsserver', 'coc-clangd', 'coc-metals']
+
 " the prefix to use for leader commands
 let mapleader=" "
+
+" sync clipboard to OS
+set clipboard=unnamed
 
 " switches to absolute line numbers automatically when relative numbers don't make sense.
 set number relativenumber
@@ -97,47 +42,31 @@ augroup END
 " toggle line number mode
 nnoremap <silent> <F7> :set relativenumber!<cr>
 
-" enable highlighting of the current cursor position (slows down rendering!)
-" set cursorline
-" set cursorcolumn
-
 " set syntax theme
 syntax on
 set termguicolors " try `:set notermguicolors` for comparison
-colorscheme gruvbox
+colorscheme gruvbox-material
 set background=dark
+
+" indent related shits
+set smartindent
+set tabstop=4 
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 
 " set column guide
 set textwidth=80
 set colorcolumn=+1
 
-" reduce travel time to reach <Esc> key
-inoremap ii <Esc>
-
-" set mouse mode
-set mouse=a
-
-" bind to system clipboard (install xclip, see :h clipboard)
-set clipboard+=unnamedplus
-
-" don't highlight all matched
-set nohlsearch
-
 " Make searching case insensitive
 set ignorecase
 " ... unless the query has capital letters.
 set smartcase
-
-" If opening buffer, search first in opened windows.
-set switchbuf=usetab
-
-" keep hlsearch while searching
-set incsearch
-augroup incsearchHighlight
-  autocmd!
-  autocmd CmdlineEnter /,\? :set hlsearch
-  autocmd CmdlineLeave /,\? :set nohlsearch
-augroup END
+" highlight all results
+set nohlsearch 
+" show search results as you type
+set incsearch 
 
 " keep the cursor a bit far than the edges (bottom & top) always
 set scrolloff=10
@@ -148,9 +77,6 @@ set sidescrolloff=15
 " prevent common mistake of pressing q: instead of :q ( happens often :/ )
 map q: :q
 
-" turn on spellcheck for comments
-" set spell spelllang=en 
-
 " no temp shits
 set nobackup
 set noswapfile
@@ -159,22 +85,13 @@ set noswapfile
 set autoread
 au CursorHold * checktime
 
+" Ctrl-w to save
+nnoremap <C-w> :w<CR>
+inoremap <C-w> <ESC>:w<CR>
+
 " auto center on matched string
 noremap n nzz
 noremap N Nzz
-
-" Ctrl-s to save
-nnoremap <C-s> :w<CR>
-inoremap <C-s> <ESC>:w<CR>
-
-" iterate buffers
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
-nnoremap <C-d> :bdelete<CR>
-
-" more natural split
-set splitbelow
-set splitright
 
 " iterate splits 
 nnoremap <C-J> <C-W><C-J>
@@ -185,16 +102,9 @@ nnoremap <C-H> <C-W><C-H>
 " set title
 set title
 
-" indent related shits
-set smartindent
-set tabstop=4 
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-
 " show hidden characters
 set list
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
+set listchars=tab:‚Üí\ ,space:¬∑,nbsp:‚ê£,trail:‚Ä¢,precedes:¬´,extends:¬ª
 
 " automatically wrap left and right
 set whichwrap+=<,>,h,l,[,]
@@ -209,20 +119,12 @@ nnoremap <Up> gk
 vnoremap <Down> gj
 vnoremap <Up> gk
 
-" fold
-set foldmethod=syntax
-set foldlevelstart=0
-
-" better wrap
-set wrap linebreak
-set showbreak=" "
-
-"""""""""""""""""""""""""""""
-" Coc - lsp
-""""""""""""""""""""""""""""""""
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-let g:coc_global_extensions = ['coc-explorer', 'coc-elixir', 'coc-diagnostic', 'coc-json', "coc-rust-analyzer", "coc-pairs", "coc-tsserver", "coc-json", "coc-html", "coc-css", "coc-python", "coc-snippets", "coc-syntax", "coc-word", "coc-tag", "coc-vetur", "coc-dictionary", "coc-vimlsp", "coc-flutter", "coc-clangd", "coc-eslint", "coc-prettier", "coc-metals"]
+""""""""""""""""""""""""""""""
+" Coc
+""""""""""""""""""""""""""""""
+" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
+" unicode characters in the file autoload/float.vim
+set encoding=utf-8
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -232,7 +134,7 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-" set cmdheight=2
+set cmdheight=2
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -243,9 +145,12 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-set signcolumn=yes
-" disable signcolumn for tagbar, nerdtree, as thats useless
-autocmd FileType tagbar setlocal signcolumn=no
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -261,8 +166,17 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" use <cr> (return/enter key) for completion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -275,15 +189,24 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -302,255 +225,69 @@ augroup end
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
-""""""""""""""""""""""""""""""""
-" Elixir - thanks to: https://bernheisel.com/blog/vim-elixir-ls-plug/
-""""""""""""""""""""""""""""""""
-" Define elixir_ls dictionary
-let g:ElixirLS = {}
-let ElixirLS.path = stdpath('config').'/plugged/elixir-ls'
-let ElixirLS.lsp = ElixirLS.path.'/release/language_server.sh'
-let ElixirLS.cmd = join([
-        \ 'asdf install &&',
-        \ 'mix do',
-        \   'local.hex --force --if-missing,',
-        \   'local.rebar --force,',
-        \   'deps.get,',
-        \   'compile,',
-        \   'elixir_ls.release'
-        \ ], ' ')
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
 
-" run it in background
-function ElixirLS.on_stdout(_job_id, data, _event)
-  let self.output[-1] .= a:data[0]
-  call extend(self.output, a:data[1:])
-endfunction
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
 
-let ElixirLS.on_stderr = function(ElixirLS.on_stdout)
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
 
-function ElixirLS.on_exit(_job_id, exitcode, _event)
-  if a:exitcode[0] == 0
-    echom '>>> ElixirLS compiled'
-  else
-    echoerr join(self.output, ' ')
-    echoerr '>>> ElixirLS compilation failed'
-  endif
-endfunction
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-function ElixirLS.compile()
-  let me = copy(g:ElixirLS)
-  let me.output = ['']
-  echom '>>> compiling ElixirLS'
-  let me.id = jobstart('cd ' . me.path . ' && git pull && ' . me.cmd, me)
-endfunction
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" update the Elixir language server
-call coc#config('elixir', {
-  \ 'command': g:ElixirLS.lsp,
-  \ 'filetypes': ['elixir', 'eelixir']
-  \})
-call coc#config('elixir.pathToElixirLS', g:ElixirLS.lsp)
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-"""""""""""""""""""""""""""""""
-" Coc-explorer
-"""""""""""""""""""""""""""""""
-nmap <leader>tt :CocCommand explorer --width 25<CR>
-nmap <leader>e :CocCommand explorer --position floating<CR>
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>x  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-"""""""""""""""""""""""""""""""
-" tags
-"""""""""""""""""""""""""""""""
-let g:tagbar_type_elixir = {
-    \ 'ctagstype' : 'elixir',
-    \ 'kinds' : [
-        \ 'p:protocols',
-        \ 'm:modules',
-        \ 'e:exceptions',
-        \ 'y:types',
-        \ 'd:delegates',
-        \ 'f:functions',
-        \ 'c:callbacks',
-        \ 'a:macros',
-        \ 't:tests',
-        \ 'i:implementations',
-        \ 'o:operators',
-        \ 'r:records'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 'p' : 'protocol',
-        \ 'm' : 'module'
-    \ },
-    \ 'scope2kind' : {
-        \ 'protocol' : 'p',
-        \ 'module' : 'm'
-    \ },
-    \ 'sort' : 0
-\ }
-nnoremap <silent> <leader>tc :TagbarToggle<CR>
-
-"""""""""""""""""""""""""""
-" splits
-"""""""""""""""""""""""""""
-map - <C-W>-
-map + <C-W>+
-
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-
-""""""""""""""""""""""""""
-" Rust
-""""""""""""""""""""""""""
-" run rustfmt on save
-let g:rustfmt_autosave = 1
-
-"""""""""""""""""""""""""
-" fzf
-"""""""""""""""""""""""""
-map! <C-\> <esc>\
-map <C-\> <esc>\
-nnoremap \f :Files<CR>
-nnoremap \g :GFiles<CR>
-nnoremap \b :Buffers<CR>
-nnoremap \m :Maps<CR>
-nnoremap \h :History<CR>
-nnoremap \ch :History:<CR>
-nnoremap \sh :History/<CR>
-nnoremap \c :Commands<CR>
-nnoremap \t :Tags<CR>
-nnoremap \bt :BTags<CR>
-
-""""""""""""""""""""""""
-" Mundo - undo tree
-""""""""""""""""""""""""
-" Enable persistent undo so that undo history persists across vim sessions
-set undofile
-set undodir=~/.vim/undo
-
-nnoremap <leader>tu :MundoToggle<CR>
-
-""""""""""""""""""""""
-" patch-1
-""""""""""""""""""""""
-let g:vim_json_syntax_conceal = 0
-
-""""""""""""""""""""""
-" Carbon
-""""""""""""""""""""""
-" ec - Execute Carbon
-vnoremap <leader>ec :CarbonNowSh<CR>
-
-"""""""""""""""""""""
-" startify
-"""""""""""""""""""""
-let g:startify_fortune_use_unicode=1
-
-"""""""""""""""""""
-" cpp
-"""""""""""""""""""
-let c_no_curly_error=1
-
-""""""""""""""""""""""""""
-" handle too large files
-""""""""""""""""""""""""""
-" file is larger than 10mb
-let g:LargeFile = 1024 * 1024 * 2
-augroup LargeFile 
-  au!
-  autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
-augroup END
-
-function! LargeFile()
- " no syntax highlighting etc
- setlocal eventignore+=FileType
- " no wrap
- setlocal nowrap
- " no spell check
- setlocal nospell
- " no hidden character rendering
- setlocal nolist
- " disable signcolumn
- setlocal signcolumn=no
- " disable colorcolumn
- setlocal colorcolumn=
- " save memory when other file is viewed
- setlocal bufhidden=unload
- " is read-only (write with :w new_filename)
- setlocal buftype=nowrite
- " no undo possible
- setlocal undolevels=-1
-
- execute "silent! CocDisable"
-
- let b:airline_disable_statusline = 1
-
- " display message
- autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
-endfunction
-
-""""""""""""""""""""""""""""
-" airline statusline
-""""""""""""""""""""""""""""
-let g:airline_theme='simple'
-let g:airline#extensions#tabline#enabled = 1
-" ease buffer switching by pressing ctrl + <buffer_number> ex. C-2
-let g:airline#extensions#tabline#buffer_nr_show = 1
-
-""""""""""""""""""""""""""
-" autosave
-""""""""""""""""""""""""""
-" enable AutoSave on Vim startup
-let g:auto_save = 1
-
-""""""""""""""""""""""""
-" rainbow brackets
-""""""""""""""""""""""""
-let g:rainbow_active = 1
-
-"""""""""""""""""""""""""""""""""""""
-" make life a liltle less miserable
-"""""""""""""""""""""""""""""""""""""
-nnoremap <Leader><Leader> :source $MYVIMRC<cr>
-nnoremap <Leader>v :e $MYVIMRC<cr>
-
-"""""""""""""""""""""""""""""""""""
-" ctags - gutentags
-"""""""""""""""""""""""""""""""""""
-" enable gtags module
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
-
-" rg (ripgrep) takes care of .gitignore
-let g:gutentags_file_list_command = 'rg --files'
-
-" config project root markers.
-let g:gutentags_project_root = ['.root']
-
-" generate datebases in my cache directory, prevent gtags files polluting my project
-let g:gutentags_cache_dir = expand('~/.cache/tags')
-
-" change focus to quickfix window after search (optional).
-let g:gutentags_plus_switch = 1
-
-"""""""""""""""""""""""""""""
-" dart & flutter
-"""""""""""""""""""""""""""""
-let g:lsc_auto_map = v:true
-
-""""""""""""""""""""""""""""""
-" vimwiki
-""""""""""""""""""""""""""""""
-" let g:vimwiki_list = [{'path': '~/brainwiki/',
-"                       \ 'syntax': 'markdown', 'ext': '.md'}]
+" coc-explorer - file manager/tree
+nnoremap <leader>e :CocCommand explorer --position floating<CR>
 
