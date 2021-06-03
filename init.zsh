@@ -1,4 +1,4 @@
-cp .profile.template ~/.profile
+cp .profile.template ~/.zprofile
 
 ln .aliases.zsh ~/
 ln .zshrc ~/

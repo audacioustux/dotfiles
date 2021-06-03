@@ -104,7 +104,7 @@ set title
 
 " show hidden characters
 set list
-set listchars=tab:‚Üí\ ,space:¬∑,nbsp:‚ê£,trail:‚Ä¢,precedes:¬´,extends:¬ª
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 
 " automatically wrap left and right
 set whichwrap+=<,>,h,l,[,]
