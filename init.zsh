@@ -2,6 +2,7 @@ cp .profile.template ~/.profile
 
 ln .aliases.zsh ~/
 ln .zshrc ~/
+ln .tmux.conf ~/
 ln .alacritty.yml ~/
 ln .tool-versions ~/
 
