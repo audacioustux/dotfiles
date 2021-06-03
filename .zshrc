@@ -1,8 +1,5 @@
 ZSH_TMUX_AUTOSTART="true"
 
-source ~/.profile
-source ~/.aliases.zsh
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -112,4 +109,3 @@ export HOMEBREW_PREFIX=$(brew --prefix)
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

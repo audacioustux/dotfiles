@@ -20,6 +20,9 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'Yggdroot/indentLine'
 " transparent background
 Plug 'tribela/vim-transparent'
+" fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -28,6 +31,12 @@ let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml'
 
 " the prefix to use for leader commands
 let mapleader=" "
+" Use <c-space> as leader in insert mode.
+if has('nvim')
+  imap <c-space> <esc><leader>
+else
+  imap <c-@> <esc><leader>
+endif
 
 " sync clipboard to OS
 set clipboard=unnamed
@@ -80,6 +89,9 @@ map q: :q
 " no temp shits
 set nobackup
 set noswapfile
+" persistent undo history
+set undofile
+set undodir=~/.nvim/undo
 
 " Auto reload if file was changed somewhere else
 set autoread
@@ -99,12 +111,17 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" when splitting horizontally, show split window on bottom
+set splitbelow
+"  when splitting vertically, show split window on right
+set splitright
+
 " set title
 set title
 
 " show hidden characters
 set list
-set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 " automatically wrap left and right
 set whichwrap+=<,>,h,l,[,]
@@ -165,13 +182,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
@@ -290,4 +300,32 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " coc-explorer - file manager/tree
 nnoremap <leader>e :CocCommand explorer --position floating<CR>
+
+
+"""""""""""""""""""""""""""'
+" fzf
+"""""""""""""""""""""""""""'
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>gf :GFiles<CR>
+nnoremap <leader>gf? :GFiles?<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>h :History<CR>
+nnoremap <leader>t :Tags<CR>
+nnoremap <leader>c :Colors<CR>
+nnoremap <leader>ag :Ag<CR>
+nnoremap <leader>rg :Rg<CR>
+nnoremap <leader>l :Lines<CR>
+nnoremap <leader>m :Marks<CR>
+nnoremap <leader>w :Windows<CR>
+nnoremap <leader>lc :Locate<CR>
+nnoremap <leader>gc :Commits<CR>
+nnoremap <leader>ht :HelpTags<CR>
+nnoremap <leader><leader>s :Snippets<CR>
+nnoremap <leader><leader>ft :Filetypes<CR>
+nnoremap <leader><leader>hc :History:<CR>
+nnoremap <leader><leader>hs :History/<CR>
+nnoremap <leader><leader>m :Maps<CR>
+nnoremap <leader><leader>c :BCommits<CR>
+nnoremap <leader><leader>l :BLines<CR>
+nnoremap <leader><leader>t :BTags<CR>
 
