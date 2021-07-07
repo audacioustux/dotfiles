@@ -1,15 +1,22 @@
 {
+    "metals.statusBarEnabled": true,
     "coc.preferences.formatOnSaveFiletypes": [
         "java",
         "xml",
         "rust",
         "javascript",
         "json",
-        "scala"
+        "scala",
+        "cpp"
     ],
     "coc.preferences.formatOnTypeFiletypes": [
         "java",
-        "scala"
+        "xml",
+        "rust",
+        "javascript",
+        "json",
+        "scala",
+        "cpp"
     ],
     "languageserver": {
         "ocaml-lsp": {
@@ -25,5 +32,7 @@
                 "reason"
             ]
         }
-    }
+    },
+    "clangd.semanticHighlighting": true,
+    "clangd.path": "/Users/tanjimhossain/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd"
 }

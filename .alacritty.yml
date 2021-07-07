@@ -5,7 +5,7 @@ window:
 font:
   size: 16.0
   normal:
-    family: "JetBrains Mono"
+    family: "JetBrainsMono Nerd Font"
     style: Regular
 draw_bold_text_with_bright_colors: true
 
@@ -150,9 +150,3 @@ colors: *gruvbox_material_medium_dark
 background_opacity: 0.98
 hide_when_typing: true
 
-shell:
-  program: /bin/zsh
-  args:
-    - -l
-    - -c
-    - "tmux attach || tmux"
