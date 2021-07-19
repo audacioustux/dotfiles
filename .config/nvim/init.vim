@@ -27,6 +27,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 " undo tree - visualization
 Plug 'simnalamburt/vim-mundo'
+" multicursor
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" for easier vim+tmux window navigation
+Plug 'christoomey/vim-tmux-navigator'
+" a collection of language packs
+Plug 'sheerun/vim-polyglot'
 
 " Initialize plugin system
 call plug#end()
@@ -87,6 +93,9 @@ set scrolloff=10
 set sidescroll=1
 set sidescrolloff=15
 
+" enable mouse functionalities in all mode
+set mouse=a
+
 " prevent common mistake of pressing q: instead of :q ( happens often :/ )
 map q: :q
 
@@ -114,12 +123,6 @@ inoremap <C-w> <ESC>:w<CR>
 " auto center on matched string
 noremap n nzz
 noremap N Nzz
-
-" iterate splits 
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " resize splits
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -151,6 +154,9 @@ nnoremap <Down> gj
 nnoremap <Up> gk
 vnoremap <Down> gj
 vnoremap <Up> gk
+
+" Configuration for vim-scala
+au BufRead,BufNewFile *.sbt set filetype=scala
 
 """"""""""""""""""""""""""""""
 " Coc
@@ -327,7 +333,6 @@ nnoremap <leader>gf? :GFiles?<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
 nnoremap <leader>t :Tags<CR>
-nnoremap <leader>c :Colors<CR>
 nnoremap <leader>ag :Ag<CR>
 nnoremap <leader>rg :Rg<CR>
 nnoremap <leader>l :Lines<CR>
@@ -341,7 +346,8 @@ nnoremap <leader><leader>ft :Filetypes<CR>
 nnoremap <leader><leader>hc :History:<CR>
 nnoremap <leader><leader>hs :History/<CR>
 nnoremap <leader><leader>m :Maps<CR>
-nnoremap <leader><leader>c :BCommits<CR>
+nnoremap <leader><leader>c :Colors<CR>
+nnoremap <leader><leader>bc :BCommits<CR>
 nnoremap <leader><leader>l :BLines<CR>
 nnoremap <leader><leader>t :BTags<CR>
 

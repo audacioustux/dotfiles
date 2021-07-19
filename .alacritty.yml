@@ -147,6 +147,6 @@ schemes:
 # Apply the color scheme.
 colors: *gruvbox_material_medium_dark
 
-background_opacity: 0.98
+background_opacity: .99
 hide_when_typing: true
 
