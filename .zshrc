@@ -11,11 +11,9 @@ export ZSH="/Users/tanjimhossain/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(asdf git fzf tmux direnv)
+plugins=(git fzf tmux direnv asdf zoxide)
 
 source $ZSH/oh-my-zsh.sh
-
-eval "$(zoxide init zsh)"
 
 export HOMEBREW_PREFIX=$(brew --prefix)
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -23,3 +21,7 @@ source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+export PATH="$WASMTIME_HOME/bin:$PATH"
+

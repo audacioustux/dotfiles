@@ -14,8 +14,13 @@ call plug#begin(stdpath('config').'/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " status/tab-line
 Plug 'vim-airline/vim-airline'
-" gruvbox theme
-Plug 'sainnhe/gruvbox-material'
+Plug 'vim-airline/vim-airline-themes'
+" theme
+" Plug 'sainnhe/gruvbox-material'
+" Plug 'morhetz/gruvbox'
+Plug 'sainnhe/sonokai'
+" theme sync with tmux
+Plug 'edkolev/tmuxline.vim'
 " vertical line at each indent level
 Plug 'Yggdroot/indentLine'
 " transparent background
@@ -33,11 +38,16 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'christoomey/vim-tmux-navigator'
 " a collection of language packs
 Plug 'sheerun/vim-polyglot'
+" elixir
+Plug 'tpope/vim-dadbod'
+Plug 'elixir-editors/vim-elixir'
+" snippets
+Plug 'honza/vim-snippets'
 
 " Initialize plugin system
 call plug#end()
 
-let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml', 'coc-rust-analyzer', 'coc-tsserver', 'coc-clangd', 'coc-cmake', 'coc-metals']
+let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml', 'coc-rust-analyzer', 'coc-tsserver', 'coc-clangd', 'coc-cmake', 'coc-metals', 'coc-eslint', 'coc-vetur', 'coc-prettier', 'coc-elixir', 'coc-snippets', 'coc-git', 'coc-pairs']
 
 " the prefix to use for leader commands
 let mapleader=" "
@@ -64,8 +74,16 @@ nnoremap <silent> <F7> :set relativenumber!<cr>
 " set syntax theme
 syntax on
 set termguicolors " try `:set notermguicolors` for comparison
-colorscheme gruvbox-material
+let g:sonokai_style = 'atlantis'
+let g:sonokai_enable_italic = 1
+let g:sonokai_current_word = 'bold'
+let g:sonokai_diagnostic_text_highlight = 1
+let g:sonokai_diagnostic_line_highlight = 1
+let g:sonokai_better_performance = 1
 set background=dark
+colorscheme sonokai
+" set airline theme
+let g:airline_theme='sonokai'
 
 " indent related shits
 set smartindent
@@ -184,12 +202,7 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -205,10 +218,8 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" use <cr> (return/enter key) for completion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -323,6 +334,21 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " coc-explorer - file manager/tree
 nnoremap <leader>e :CocCommand explorer --position floating<CR>
 
+"""""""""" coc-snippets
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 """""""""""""""""""""""""""'
 " fzf

@@ -5,18 +5,24 @@
         "xml",
         "rust",
         "javascript",
+        "typescript",
         "json",
         "scala",
-        "cpp"
+        "cpp",
+        "vue",
+        "elixir"
     ],
     "coc.preferences.formatOnTypeFiletypes": [
         "java",
         "xml",
         "rust",
         "javascript",
+        "typescript",
         "json",
         "scala",
-        "cpp"
+        "cpp",
+        "vue",
+        "elixir"
     ],
     "languageserver": {
         "ocaml-lsp": {
@@ -33,6 +39,18 @@
             ]
         }
     },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue"
+    ],
     "clangd.semanticHighlighting": true,
-    "clangd.path": "/Users/tanjimhossain/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd"
+    "clangd.fallbackFlags": ["-std=c++17"],
+    "clangd.path":
+    "/Users/tanjimhossain/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd",
+    "git.changedSign.text": "▌",
+    "git.addedSign.text": "▌",
+    "git.removedSign.text": "▁",
+    "git.changeRemovedSign.text": "▁",
+    "git.topRemovedSign.text": "▔"
 }
