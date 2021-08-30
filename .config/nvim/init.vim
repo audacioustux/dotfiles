@@ -47,7 +47,7 @@ Plug 'honza/vim-snippets'
 " Initialize plugin system
 call plug#end()
 
-let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml', 'coc-rust-analyzer', 'coc-tsserver', 'coc-clangd', 'coc-cmake', 'coc-metals', 'coc-eslint', 'coc-vetur', 'coc-prettier', 'coc-elixir', 'coc-snippets', 'coc-git', 'coc-pairs','coc-diagnostic']
+let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml', 'coc-rust-analyzer', 'coc-tsserver', 'coc-clangd', 'coc-cmake', 'coc-metals', 'coc-eslint', 'coc-vetur', 'coc-prettier', 'coc-elixir', 'coc-snippets', 'coc-git', 'coc-pairs', 'coc-diagnostic']
 
 " the prefix to use for leader commands
 let mapleader=" "
@@ -69,7 +69,9 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
 augroup END
 " toggle line number mode
-nnoremap <silent> <F7> :set relativenumber!<cr>
+nnoremap <silent> <leader>nu :set relativenumber!<cr>
+
+autocmd InsertEnter,InsertLeave * set cul!
 
 " set syntax theme
 syntax on
@@ -128,7 +130,7 @@ endif
 let &undodir=s:undoDir
 set undofile
 " mundo
-nnoremap <F5> :MundoToggle<CR>
+nnoremap <leader>tm :MundoToggle<CR>
 
 " Auto reload if file was changed somewhere else
 set autoread
@@ -358,7 +360,7 @@ nnoremap <leader>gf :GFiles<CR>
 nnoremap <leader>gf? :GFiles?<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
-nnoremap <leader>t :Tags<CR>
+nnoremap <leader>tt :Tags<CR>
 nnoremap <leader>ag :Ag<CR>
 nnoremap <leader>rg :Rg<CR>
 nnoremap <leader>l :Lines<CR>
@@ -377,3 +379,9 @@ nnoremap <leader><leader>bc :BCommits<CR>
 nnoremap <leader><leader>l :BLines<CR>
 nnoremap <leader><leader>t :BTags<CR>
 
+"""""""""""""""""""""""""""""
+" patch
+"""""""""""""""""""""""""""""
+" for italic in tmux - https://gist.github.com/gutoyr/4192af1aced7a1b555df06bd3781a722
+set t_ZH=[3m
+set t_ZR=[23m
