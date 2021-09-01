@@ -386,4 +386,4 @@ nnoremap <leader><leader>t :BTags<CR>
 set t_ZH=[3m
 set t_ZR=[23m
 " patch sonokai color theme for Coc
-hi CocHintSign          guifg=#586069
+hi CocRustChainingHint guifg=Grey
