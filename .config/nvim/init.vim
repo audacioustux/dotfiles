@@ -76,7 +76,7 @@ autocmd InsertEnter,InsertLeave * set cul!
 " set syntax theme
 syntax on
 set termguicolors " try `:set notermguicolors` for comparison
-let g:sonokai_style = 'atlantis'
+let g:sonokai_style = 'shusia'
 let g:sonokai_enable_italic = 1
 let g:sonokai_current_word = 'bold'
 let g:sonokai_diagnostic_text_highlight = 1
@@ -385,3 +385,5 @@ nnoremap <leader><leader>t :BTags<CR>
 " for italic in tmux - https://gist.github.com/gutoyr/4192af1aced7a1b555df06bd3781a722
 set t_ZH=[3m
 set t_ZR=[23m
+" patch sonokai color theme for Coc
+hi CocHintSign          guifg=#586069
