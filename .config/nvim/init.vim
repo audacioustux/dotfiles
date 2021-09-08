@@ -47,7 +47,7 @@ Plug 'honza/vim-snippets'
 " Initialize plugin system
 call plug#end()
 
-let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml', 'coc-rust-analyzer', 'coc-tsserver', 'coc-clangd', 'coc-cmake', 'coc-metals', 'coc-eslint', 'coc-vetur', 'coc-prettier', 'coc-elixir', 'coc-snippets', 'coc-git', 'coc-pairs', 'coc-diagnostic']
+let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml', 'coc-rust-analyzer', 'coc-tsserver', 'coc-clangd', 'coc-cmake', 'coc-eslint', 'coc-vetur', 'coc-prettier', 'coc-elixir', 'coc-snippets', 'coc-git', 'coc-pairs', 'coc-diagnostic', 'coc-metals']
 
 " the prefix to use for leader commands
 let mapleader=" "
@@ -63,7 +63,7 @@ set clipboard=unnamed
 
 " switches to absolute line numbers automatically when relative numbers don't make sense.
 set number relativenumber
-augroup numbertoggle
+augroup numberModeToggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
@@ -71,7 +71,11 @@ augroup END
 " toggle line number mode
 nnoremap <silent> <leader>nu :set relativenumber!<cr>
 
-autocmd InsertEnter,InsertLeave * set cul!
+augroup cursorLineToggle
+  autocmd!
+  autocmd InsertEnter * set cul | hi! link CursorLineNr Green
+  autocmd InsertLeave * set nocul | hi! link CursorLineNr FG
+augroup END
 
 " set syntax theme
 syntax on
@@ -385,5 +389,6 @@ nnoremap <leader><leader>t :BTags<CR>
 " for italic in tmux - https://gist.github.com/gutoyr/4192af1aced7a1b555df06bd3781a722
 set t_ZH=[3m
 set t_ZR=[23m
-" patch sonokai color theme for Coc
-hi CocRustChainingHint guifg=Grey
+
+" use asdf node version for coc
+let g:coc_node_path = trim(system('asdf which node'))

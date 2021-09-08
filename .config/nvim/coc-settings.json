@@ -13,6 +13,7 @@
     "vue",
     "elixir"
   ],
+  "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnTypeFiletypes": [
     "java",
     "xml",
@@ -42,6 +43,11 @@
     "elixir": ["mix_credo", "mix_credo_compile"],
     "eelixir": ["mix_credo", "mix_credo_compile"]
   },
+  "diagnostic.virtualTextPrefix": " ▸ ",
+  "diagnostic.errorSign": "\uf65b",
+  "diagnostic.warningSign": "\uf525",
+  "diagnostic.infoSign": "\uf7fb",
+  "diagnostic.hintSign": "\uf7d6",
   "git.changedSign.text": "▌",
   "git.addedSign.text": "▌",
   "git.removedSign.text": "▁",
