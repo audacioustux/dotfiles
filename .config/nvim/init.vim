@@ -390,5 +390,5 @@ nnoremap <leader><leader>t :BTags<CR>
 set t_ZH=[3m
 set t_ZR=[23m
 
-" use asdf node version for coc
+" use asdf node version for cock
 let g:coc_node_path = trim(system('asdf which node'))
