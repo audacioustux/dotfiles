@@ -11,7 +11,8 @@
     "scala",
     "cpp",
     "vue",
-    "elixir"
+    "elixir",
+    "html"
   ],
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnTypeFiletypes": [
@@ -25,8 +26,10 @@
     "scala",
     "cpp",
     "vue",
-    "elixir"
+    "elixir",
+    "html"
   ],
+  "prettier.printWidth": 160,
   "languageserver": {
     "ocaml-lsp": {
       "command": "opam",

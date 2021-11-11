@@ -43,11 +43,17 @@ Plug 'tpope/vim-dadbod'
 Plug 'elixir-editors/vim-elixir'
 " snippets
 Plug 'honza/vim-snippets'
+" comment
+Plug 'numToStr/Comment.nvim'
 
 " Initialize plugin system
 call plug#end()
 
-let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml', 'coc-rust-analyzer', 'coc-tsserver', 'coc-clangd', 'coc-cmake', 'coc-eslint', 'coc-vetur', 'coc-prettier', 'coc-elixir', 'coc-snippets', 'coc-git', 'coc-pairs', 'coc-diagnostic', 'coc-metals']
+lua require('Comment').setup()
+
+let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml', 'coc-rust-analyzer', 'coc-tsserver', 'coc-clangd', 'coc-cmake', 'coc-eslint', 'coc-vetur', 'coc-prettier', 'coc-elixir', 'coc-snippets', 'coc-git', 'coc-pairs', 'coc-diagnostic', 'coc-metals', 'coc-pyright']
+
+autocmd BufNewFile,BufRead *.jsp set filetype=html
 
 " the prefix to use for leader commands
 let mapleader=" "
