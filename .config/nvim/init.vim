@@ -51,7 +51,7 @@ call plug#end()
 
 lua require('Comment').setup()
 
-let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml', 'coc-rust-analyzer', 'coc-tsserver', 'coc-clangd', 'coc-cmake', 'coc-eslint', 'coc-vetur', 'coc-prettier', 'coc-elixir', 'coc-snippets', 'coc-git', 'coc-pairs', 'coc-diagnostic', 'coc-metals', 'coc-pyright']
+let g:coc_global_extensions = ['coc-explorer', 'coc-java', 'coc-json', 'coc-xml', 'coc-rust-analyzer', 'coc-tsserver', 'coc-clangd', 'coc-cmake', 'coc-eslint', 'coc-vetur', 'coc-prettier', 'coc-elixir', 'coc-snippets', 'coc-git', 'coc-pairs', 'coc-diagnostic', 'coc-metals', 'coc-pyright', 'coc-kotlin']
 
 autocmd BufNewFile,BufRead *.jsp set filetype=html
 
@@ -105,7 +105,7 @@ set shiftwidth=4
 set expandtab
 
 " set column guide
-set textwidth=80
+set textwidth=120
 set colorcolumn=+1
 
 " Make searching case insensitive

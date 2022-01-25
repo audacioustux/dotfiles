@@ -12,7 +12,8 @@
     "cpp",
     "vue",
     "elixir",
-    "html"
+    "html",
+    "kotlin"
   ],
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnTypeFiletypes": [
@@ -27,9 +28,10 @@
     "cpp",
     "vue",
     "elixir",
-    "html"
+    "html",
+    "kotlin"
   ],
-  "prettier.printWidth": 160,
+  "prettier.printWidth": 120,
   "languageserver": {
     "ocaml-lsp": {
       "command": "opam",
@@ -55,5 +57,11 @@
   "git.addedSign.text": "▌",
   "git.removedSign.text": "▁",
   "git.changeRemovedSign.text": "▁",
-  "git.topRemovedSign.text": "▔"
+  "git.topRemovedSign.text": "▔",
+  "java.format.settings.url": "/Users/tanjimhossain/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
+  "java.format.onType.enabled": true,
+  "java.format.enabled": true,
+  "java.saveActions.organizeImports": true,
+  "java.autobuild.enabled": true,
+  "java.jdt.ls.vmargs": "-javaagent:/Users/tanjimhossain/Downloads/lombok.jar"
 }
