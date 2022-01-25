@@ -45,6 +45,8 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'honza/vim-snippets'
 " comment
 Plug 'numToStr/Comment.nvim'
+" fancy icons eh... 
+Plug 'ryanoasis/vim-devicons'
 
 " Initialize plugin system
 call plug#end()

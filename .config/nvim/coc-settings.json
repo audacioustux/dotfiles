@@ -40,7 +40,6 @@
     }
   },
   "eslint.validate": ["javascript", "javascriptreact", "vue"],
-  "clangd.semanticHighlighting": true,
   "clangd.fallbackFlags": ["-std=c++17"],
   "clangd.path": "/Users/tanjimhossain/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd",
   "codeLens.enable": true,
@@ -63,5 +62,7 @@
   "java.format.enabled": true,
   "java.saveActions.organizeImports": true,
   "java.autobuild.enabled": true,
-  "java.jdt.ls.vmargs": "-javaagent:/Users/tanjimhossain/Downloads/lombok.jar"
+  "java.jdt.ls.vmargs": "-javaagent:/Users/tanjimhossain/Downloads/lombok.jar",
+  "explorer.icon.enableNerdfont": true,
+  "explorer.icon.source": "vim-devicons"
 }
