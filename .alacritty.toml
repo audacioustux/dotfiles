@@ -1,0 +1,17 @@
+[font.normal]
+# family = "JetBrainsMono Nerd Font"
+family = "MonaspiceNe Nerd Font"
+
+[window]
+dynamic_padding = true
+
+[window.padding]
+x = 10
+y = 10
+
+[selection]
+save_to_clipboard = true
+
+[scrolling]
+history = 100_000
+
